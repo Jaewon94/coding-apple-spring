@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://codigapplespring.mysql.database.azure.com/shop
+    username: jaewon
+    password: Zmfhdnwm0=
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    hibernate:
+      ddl-auto: update
