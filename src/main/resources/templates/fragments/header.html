@@ -2,4 +2,9 @@
     <a class="logo">SpringMall</a>
     <a th:href="@{/list}">List</a>
     <a th:href="@{/write}">Write</a>
+    <a th:href="@{/login}" th:unless="${#authorization.expression('isAuthenticated()')}">Login</a>
+    <a th:href="@{/login}" th:unless="${#authorization.expression('isAuthenticated()')}">Login</a>
+    <a th:href="@{/my-page}" th:if="${#authorization.expression('isAuthenticated()')}">My page</a>
+    <a th:href="@{/logout}" th:if="${#authorization.expression('isAuthenticated()')}">Logout</a>
+    <span th:if="${#authorization.expression('isAuthenticated()')}" th:text="${#authentication.principal.username}"></span>
 </div>

@@ -9,7 +9,7 @@ public class BasicController {
 
     @GetMapping("/")
     public String hello() {
-        return "index.html";
+        return "index";
     }
 
     @GetMapping("/about")

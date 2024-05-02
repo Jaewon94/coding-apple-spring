@@ -1,13 +1,17 @@
 package com.jaewon.appleshop.controller;
 
 import com.jaewon.appleshop.domain.Item;
+import com.jaewon.appleshop.domain.Member;
 import com.jaewon.appleshop.service.ItemService;
+import com.jaewon.appleshop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -15,6 +19,7 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final MemberService memberService;
 
     @GetMapping("/list")
     public String list(Model model) {
@@ -32,7 +37,10 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    public String add(@ModelAttribute("item") Item item) {
+    public String add(@ModelAttribute("item") Item item, Principal principal) {
+        Member member = memberService.findByUsername(principal.getName());
+
+        item.setMember(member);
         itemService.save(item);
         return "redirect:/list";
     }

@@ -13,15 +13,12 @@
 
 <div th:replace="~{fragments/header :: navbar}"></div>
 
-<form action="" method="post">
+<h4>마이페이지</h4>
 
-    <label>
-        <input name="title" th:value="${item.title}">
-    </label>
-    <label>
-        <input name="price" th:value="${item.price}">
-    </label>
-    <button type="submit">전송</button>
-</form>
+<div sec:authentication="principal"></div>
+<div sec:authentication="principal.username"></div>
+<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+    <span>이 유저는 어드민임</span>
+</div>
 </body>
 </html>

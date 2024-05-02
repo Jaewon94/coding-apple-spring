@@ -17,4 +17,7 @@ public class Item {
     private String title;
     private Integer price;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
+
 }

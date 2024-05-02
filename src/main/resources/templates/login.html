@@ -13,13 +13,17 @@
 
 <div th:replace="~{fragments/header :: navbar}"></div>
 
-<form action="" method="post">
+<h4>로그인</h4>
 
+<div th:if="${param.error}">
+    <h4 style="color: red">아이디나 비번이 틀렸습니다.</h4>
+</div>
+<form action="/login" method="post">
     <label>
-        <input name="title" th:value="${item.title}">
+        <input name="username">
     </label>
     <label>
-        <input name="price" th:value="${item.price}">
+        <input name="password" type="password">
     </label>
     <button type="submit">전송</button>
 </form>
