@@ -10,21 +10,18 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @ToString
-@Table(indexes = {
-        @Index(name = "title", columnList = "작명"),
-})
-public class Item {
+public class Comment {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String title;
-    private Integer price;
+    @Column(length = 1000)
+    private String comment;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private Item item;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
-
-    @OneToMany(mappedBy = "item")
-    private List<Comment> comment;
 }

@@ -20,5 +20,15 @@
     <p th:text="${item.price}">7억</p>
 </div>
 
+<form th:action="@{/comment/{id}(id=${item.getId()})}" method="post">
+    <input name="comment" type="text" placeholder="댓글을 입력하세요">
+    <button type="submit">작성</button>
+</form>
+
+<div th:each=" comment : ${comments}">
+    <p th:text="${comment.getMember().getDisplayName()}"></p>
+    <p th:text="${comment.getComment()}"></p>
+</div>
+
 </body>
 </html>
